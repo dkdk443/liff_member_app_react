@@ -21,7 +21,7 @@ const App = (props: any) => {
       // alert(JSON.stringify(error));
       console.log(error);
     })
-  },[]);
+  });
   // const lineDisplayName = props.profile.lineDisplayName;
   const { Canvas } = useQRCode();
   if (memberId) {
