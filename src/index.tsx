@@ -2,18 +2,39 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import liff from '@line/liff/dist/lib';
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+export type Profile = {
+  lineUserId: string;
+  lineDisplayName: string;
+};
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+let liffId = process.env.REACT_APP_LIFF_ID
+console.log(process.env);
+
+let profile: Profile = { 'lineUserId': '', 'lineDisplayName': '' };
+
+liff
+  .init({
+    liffId: liffId || '',
+    withLoginOnExternalBrowser: true
+  })
+  .then(() => {
+    liff
+      .getProfile()
+      .then((result) => {
+        profile.lineUserId = result.userId;
+        profile.lineDisplayName = result.displayName;
+        ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+          <React.StrictMode>
+            <App profile={ profile } />
+          </React.StrictMode>
+        )
+      })
+  })
+  .catch((e) => {
+    alert(`LIFF error: ${e.message}`)
+  });
+
+
+
