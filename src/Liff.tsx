@@ -3,7 +3,9 @@
 import './App.css'
 import { useQRCode } from 'next-qrcode';
 
-const App = (props: any) => {
+const Liff = (props: any) => {
+  // const lineUserId = props.profile.lineUserId;
+  // const lineDisplayName = props.profile.lineDisplayName;
   const { Canvas } = useQRCode();
   return (
     <div className="App">
@@ -28,4 +30,4 @@ const App = (props: any) => {
   )
 }
 
-export default App
+export default Liff

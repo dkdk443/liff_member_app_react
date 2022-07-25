@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+import Liff from './App';
+import App from './Liff';
 import liff from '@line/liff/dist/lib';
 
 export type Profile = {
@@ -14,7 +15,8 @@ console.log(process.env);
 
 let profile: Profile = { 'lineUserId': '', 'lineDisplayName': '' };
 
-liff
+if (liff.isInClient()) {
+  liff
   .init({
     liffId: liffId || '',
     withLoginOnExternalBrowser: true
@@ -25,16 +27,21 @@ liff
       .then((result) => {
         profile.lineUserId = result.userId;
         profile.lineDisplayName = result.displayName;
-        ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-          <React.StrictMode>
-            <App profile={ profile } />
-          </React.StrictMode>
-        )
+        renderRootApp()
       })
   })
   .catch((e) => {
     alert(`LIFF error: ${e.message}`)
   });
+} else {
+  renderRootApp();
+}
 
-
+function renderRootApp() {
+  ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+      <React.StrictMode>
+        <App profile={ profile } />
+      </React.StrictMode>
+    )
+}
 
