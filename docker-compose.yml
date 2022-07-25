@@ -1,0 +1,12 @@
+version: '3.9'
+services:
+  liff-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/var/www/html/liff_member_app_react # ローカルをコンテナ内にマウント
+    command: sh -c "npm start"
+    ports:
+      - "3000:3000"
+    stdin_open: true 
