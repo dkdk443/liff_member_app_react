@@ -5,6 +5,7 @@ import axios from 'axios';
 
 const App = (props: any) => {
   const lineUserId = props.profile.lineUserId;
+  alert(JSON.stringify(props));
   const [memberId, setMemberId] = useState('');
   const endpointUrl = `https://liff-member-api-laravel.herokuapp.com/api/memberId`;
   useEffect(() => {
@@ -12,7 +13,8 @@ const App = (props: any) => {
       .post(endpointUrl, {
         'line_user_id': lineUserId
         }
-      ).then(resp => {
+    ).then(resp => {
+         alert(JSON.stringify(resp));
         setMemberId(resp.data.results.member_id);
       }).catch(error => {
         alert(JSON.stringify(error));
