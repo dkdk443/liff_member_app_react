@@ -15,6 +15,7 @@ const App = (props: any) => {
       ).then(resp => {
         setMemberId(resp.data.results.member_id);
       }).catch(error => {
+        alert(JSON.stringify(error));
         console.log(error);
       })
   });
