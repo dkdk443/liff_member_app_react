@@ -1,15 +1,30 @@
-// import { useState } from 'react'
-// import reactLogo from './assets/react.svg'
+import { useState, useEffect } from 'react'
 import './App.css'
 import { useQRCode } from 'next-qrcode';
+import axios from 'axios';
 
 const App = (props: any) => {
+  const lineUserId = props.profile.lineUserId;
+  const [memberId, setMemberId] = useState('');
+  const endpointUrl = `https://liff-member-api-laravel.herokuapp.com/api/memberId`;
+  useEffect(() => {
+    axios
+      .post(endpointUrl, {
+        'line_user_id': lineUserId
+        }
+      ).then(resp => {
+        setMemberId(resp.data.results.member_id);
+      }).catch(error => {
+        console.log(error);
+      })
+  });
+  // const lineDisplayName = props.profile.lineDisplayName;
   const { Canvas } = useQRCode();
   return (
     <div className="App">
       <div className="card">
         <Canvas
-          text={'ここに会員番号を渡す'}
+          text={ memberId }
           options={{
             type: 'image/jpeg',
             quality: 0.3,
@@ -22,7 +37,8 @@ const App = (props: any) => {
               light: '#FFF',
             },
           }}
-      />
+        />
+        <p>{memberId}</p>
       </div>
     </div>
   )
