@@ -5,7 +5,7 @@ import axios from 'axios';
 
 const App = (props: any) => {
   const lineUserId = props.profile.lineUserId;
-  // alert(JSON.stringify(props));
+  // const lineUserId = 'AAAAAAAAAAAA';
   const [memberId, setMemberId] = useState('');
   const endpointUrl = `https://liff-member-api-laravel.herokuapp.com/api/memberId`;
   useEffect(() => {
@@ -18,7 +18,6 @@ const App = (props: any) => {
       setMemberId(resp.data.results.member_id);
     })
     .catch(error => {
-      // alert(JSON.stringify(error));
       console.log(error);
     })
   });
@@ -36,7 +35,7 @@ const App = (props: any) => {
               level: 'M',
               margin: 3,
               scale: 4,
-              width: 260,
+              width: 220,
               color: {
                 dark: '#010599FF',
                 light: '#FFF',

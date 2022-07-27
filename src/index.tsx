@@ -14,24 +14,32 @@ console.log(process.env);
 
 let profile: Profile = { 'lineUserId': '', 'lineDisplayName': '' };
 
-liff
-.init({
-  liffId: liffId || '',
-  withLoginOnExternalBrowser: true
-})
-.then(() => {
+if (liff.isInClient()) {
   liff
-    .getProfile()
-    .then((result) => {
-      profile.lineUserId = result.userId;
-      profile.lineDisplayName = result.displayName;
-      ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-        <React.StrictMode>
-          <Liff profile={ profile } />
-        </React.StrictMode>
-      )
-    })
-})
-.catch((e) => {
-  alert(`LIFF error: ${e.message}`)
-});
+  .init({
+    liffId: liffId || '',
+    // withLoginOnExternalBrowser: true
+  })
+  .then(() => {
+    liff
+      .getProfile()
+      .then((result) => {
+        profile.lineUserId = result.userId;
+        profile.lineDisplayName = result.displayName;
+        ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+          <React.StrictMode>
+            <Liff profile={ profile } />
+          </React.StrictMode>
+        )
+      })
+  })
+  .catch((e) => {
+    alert(`LIFF error: ${e.message}`)
+  });
+} else {
+    ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+      <React.StrictMode>
+        <Liff profile={ profile } />
+      </React.StrictMode>
+    )
+}
