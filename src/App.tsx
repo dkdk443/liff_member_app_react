@@ -4,8 +4,8 @@ import { useQRCode } from 'next-qrcode';
 import axios from 'axios';
 
 const App = (props: any) => {
-  const lineUserId = props.profile.lineUserId;
-  // const lineUserId = 'AAAAAAAAAAAA';
+  // const lineUserId = props.profile.lineUserId;
+  const lineUserId = 'AAAAAAAAAAAA';
   const [memberId, setMemberId] = useState('');
   const endpointUrl = `https://liff-member-api-laravel.herokuapp.com/api/memberId`;
   useEffect(() => {
@@ -26,32 +26,44 @@ const App = (props: any) => {
   if (memberId) {
     return (
       <div className="App">
-        <div className="card">
-          <Canvas
-            text={ memberId ? memberId : 'ABC' }
-            options={{
-              type: 'image/jpeg',
-              quality: 0.3,
-              level: 'M',
-              margin: 3,
-              scale: 4,
-              width: 220,
-              color: {
-                dark: '#010599FF',
-                light: '#FFF',
-              },
-            }}
-          />
-          <p>{memberId}</p>
+        <div className="header">
+          WEB会員証
+        </div>
+        <div className="container">
+
+          <div className="card">
+            <Canvas
+              text={ memberId ? memberId : 'ABC' }
+              options={{
+                type: 'image/jpeg',
+                quality: 0.3,
+                level: 'M',
+                margin: 3,
+                scale: 4,
+                width: 220,
+                color: {
+                  dark: '#010599FF',
+                  light: '#FFF',
+                },
+              }}
+            />
+            <p>{memberId}</p>
+          </div>
         </div>
       </div>
     )
   } else {
     return (
-      <p className='loading'>Loading...</p>
+      <div className="App">
+        <div className="header">
+          WEB会員証
+        </div>
+        <div className="container">
+          <div className="loading">読み込み中・・・</div>
+        </div>
+      </div>
     );
   }
-
 }
 
 export default App
