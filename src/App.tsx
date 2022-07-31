@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 import { useQRCode } from 'next-qrcode';
+import { useBarcode } from 'next-barcode';
 import axios from 'axios';
 
 const App = (props: any) => {
@@ -23,6 +24,13 @@ const App = (props: any) => {
   });
   // const lineDisplayName = props.profile.lineDisplayName;
   const { Canvas } = useQRCode();
+  const { inputRef } = useBarcode({
+    value: 'next-barcode',
+    options: {
+      displayValue: false,
+      background: '#ffc0cb',
+    }
+  });
   if (memberId) {
     return (
       <div className="App">
@@ -32,6 +40,7 @@ const App = (props: any) => {
         <div className="container">
 
           <div className="card">
+            <img ref={inputRef} />
             <Canvas
               text={ memberId ? memberId : 'ABC' }
               options={{
@@ -47,7 +56,7 @@ const App = (props: any) => {
                 },
               }}
             />
-            <p>{memberId}</p>
+            <p className="detail">{memberId}</p>
           </div>
         </div>
       </div>

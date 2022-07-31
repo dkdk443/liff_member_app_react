@@ -1,26 +1,28 @@
 .App {
   text-align: center;
-  background: rgb(34, 193, 195);
-    background: linear-gradient(0deg, rgba(34, 193, 195, 1) 0%, rgba(253, 187, 45, 1) 100%);
-    height: 100vh;
-    display: flex;
-    justify-content:space-between;
-    align-items: center;
-    flex-direction: column;
+  height: 100vh;
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+  flex-direction: column;
+  background-color: aliceblue;
+  position: relative;
 }
 
 .header {
-  background-color: rgb(36, 36, 36);
   width: 100%;
-  color: white;
-  height: 52px;
+  height: 60px;
   display: flex;
   justify-content: center;
-  align-items: center;
   margin-bottom: 40px;
-  box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.35);
-  font-size: 16px;
+  background-color: #5bcae9;
+  height: 280px;
+}
+.header_text {
+  margin-top: 40px;
   font-weight: 600;
+  font-size: 22px;
+  color: #fff;
 }
 
 .container {
@@ -66,6 +68,14 @@
   font-size: 16px;
   color: #fff;
   font-weight: 600;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(67, 67, 67, 0.398);
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .card {
@@ -73,5 +83,10 @@
   border-radius: 20px;
   padding: 20px;
   max-width: 280px;
-  box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.35);
+  box-shadow: 0px 5px 18px 0px rgba(0, 0, 0, 0.186);
+  position: absolute;
+  top: 120px;
+}
+.detail {
+  font-size: 12px;
 }
