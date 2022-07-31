@@ -1,8 +1,10 @@
+import React from 'react';
 import { useState, useEffect } from 'react'
 import './App.css'
 import { useQRCode } from 'next-qrcode';
-import { useBarcode } from 'next-barcode';
 import axios from 'axios';
+import Barcode from './barcode';
+import { Loading } from './loading';
 
 const App = (props: any) => {
   // const lineUserId = props.profile.lineUserId;
@@ -24,23 +26,14 @@ const App = (props: any) => {
   });
   // const lineDisplayName = props.profile.lineDisplayName;
   const { Canvas } = useQRCode();
-  const { inputRef } = useBarcode({
-    value: 'next-barcode',
-    options: {
-      displayValue: false,
-      background: '#ffc0cb',
-    }
-  });
   if (memberId) {
     return (
       <div className="App">
         <div className="header">
-          WEB会員証
+          <div className="header_text">WEB会員証</div>
         </div>
-        <div className="container">
-
           <div className="card">
-            <img ref={inputRef} />
+            <Barcode memberId={ memberId }></Barcode>
             <Canvas
               text={ memberId ? memberId : 'ABC' }
               options={{
@@ -49,26 +42,25 @@ const App = (props: any) => {
                 level: 'M',
                 margin: 3,
                 scale: 4,
-                width: 220,
+                width: 160,
                 color: {
                   dark: '#010599FF',
                   light: '#FFF',
                 },
               }}
             />
-            <p className="detail">{memberId}</p>
+            <p className="detail">{ memberId }</p>
           </div>
-        </div>
       </div>
     )
   } else {
     return (
       <div className="App">
         <div className="header">
-          WEB会員証
+           <div className="header_text">WEB会員証</div>
         </div>
-        <div className="container">
-          <div className="loading">読み込み中・・・</div>
+        <div className="loading">
+          <Loading />
         </div>
       </div>
     );
