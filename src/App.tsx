@@ -7,8 +7,8 @@ import Barcode from './barcode';
 import { Loading } from './loading';
 
 const App = (props: any) => {
-  // const lineUserId = props.profile.lineUserId;
-  const lineUserId = 'AAAAAAAAAAAA';
+  const lineUserId = props.profile.lineUserId;
+  // const lineUserId = 'AAAAAAAAAAAA';
   const [memberId, setMemberId] = useState('');
   const endpointUrl = `https://liff-member-api-laravel.herokuapp.com/api/memberId`;
   useEffect(() => {
@@ -30,6 +30,7 @@ const App = (props: any) => {
     return (
       <div className="App">
         <div className="header">
+          <div className="header_logo">DEMO JIM</div>
           <div className="header_text">WEB会員証</div>
         </div>
           <div className="card">
