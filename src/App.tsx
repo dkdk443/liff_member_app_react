@@ -1,10 +1,10 @@
-import React from 'react';
 import { useState, useEffect } from 'react'
 import './App.css'
-import { useQRCode } from 'next-qrcode';
 import axios from 'axios';
-import Barcode from './barcode';
-import { Loading } from './loading';
+import { Loading } from './components/loading';
+import { Routes, Route} from "react-router-dom";
+import Mypage from './Mypage';
+import MemberCard from './MemberCard';
 
 const App = (props: any) => {
   const lineUserId = props.profile.lineUserId;
@@ -24,41 +24,26 @@ const App = (props: any) => {
       console.log(error);
     })
   });
-  // const lineDisplayName = props.profile.lineDisplayName;
-  const { Canvas } = useQRCode();
+
   if (memberId) {
     return (
-      <div className="App">
-        <div className="header">
-          <div className="header_logo">DEMO JIM</div>
-          <div className="header_text">WEB会員証</div>
-        </div>
-          <div className="card">
-            <Barcode memberId={ memberId }></Barcode>
-            <Canvas
-              text={ memberId ? memberId : 'ABC' }
-              options={{
-                type: 'image/jpeg',
-                quality: 0.3,
-                level: 'M',
-                margin: 3,
-                scale: 4,
-                width: 160,
-                color: {
-                  dark: '#010599FF',
-                  light: '#FFF',
-                },
-              }}
-            />
-            <p className="detail">{ memberId }</p>
-          </div>
+      <div className="container">
+        <Routes>
+          <Route path="/" element={<MemberCard props={props} />} />
+          <Route path="mypage" element={<Mypage props={props} />} />
+        </Routes>
       </div>
     )
   } else {
     return (
       <div className="App">
         <div className="header">
-           <div className="header_text">WEB会員証</div>
+          <div className="header__title">
+            <div className="header_logo">DEMO JIM</div>
+            <div className="header_text">WEB会員証</div>
+          </div>
+          <div className="header__button">
+          </div>
         </div>
         <div className="loading">
           <Loading />
