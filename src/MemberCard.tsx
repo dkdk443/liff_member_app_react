@@ -5,8 +5,7 @@ import { useQRCode } from 'next-qrcode';
 import axios from 'axios';
 import Barcode from './components/barcode';
 import { Loading } from './components/loading';
-import { Routes, Route, Link } from "react-router-dom";
-import Mypage from './Mypage';
+import { Link } from "react-router-dom";
 
 const MemberCard = (props: any) => {
   // const lineUserId = props.profile.lineUserId;
