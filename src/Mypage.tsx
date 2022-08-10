@@ -1,7 +1,7 @@
 import './App.css'
 
 const Mypage = (props: any) => {
-  console.log(props.props.profile);
+  alert(JSON.stringify(props));
   const lineDisplayName = props.props.profile.lineDisplayName;
   const linePictureUrl = props.props.profile.linePictureUrl;
   return (

@@ -8,8 +8,8 @@ import { Loading } from './components/loading';
 import { Link } from "react-router-dom";
 
 const MemberCard = (props: any) => {
-  // const lineUserId = props.profile.lineUserId;
-  const lineUserId = 'AAAAAAAAAAAA';
+  const lineUserId = props.profile.lineUserId;
+  // const lineUserId = 'AAAAAAAAAAAA';
   const [memberId, setMemberId] = useState('');
   const endpointUrl = `https://liff-member-api-laravel.herokuapp.com/api/memberId`;
   useEffect(() => {
@@ -18,7 +18,7 @@ const MemberCard = (props: any) => {
         'line_user_id': lineUserId
         }
     ).then(resp => {
-      // alert(JSON.stringify(resp));
+      alert(JSON.stringify(resp));
       setMemberId(resp.data.results.member_id);
     })
     .catch(error => {
