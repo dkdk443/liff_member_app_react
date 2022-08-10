@@ -8,6 +8,7 @@ import MemberCard from './MemberCard';
 
 const App = (props: any) => {
   const lineUserId = props.profile.lineUserId;
+  alert(lineUserId);
   // const lineUserId = 'AAAAAAAAAAAA';
   const [memberId, setMemberId] = useState('');
   const endpointUrl = `https://liff-member-api-laravel.herokuapp.com/api/memberId`;
@@ -17,10 +18,11 @@ const App = (props: any) => {
         'line_user_id': lineUserId
         }
     ).then(resp => {
-      // alert(JSON.stringify(resp));
+      alert(JSON.stringify(resp));
       setMemberId(resp.data.results.member_id);
     })
-    .catch(error => {
+      .catch(error => {
+        alert(JSON.stringify(error));
       console.log(error);
     })
   });

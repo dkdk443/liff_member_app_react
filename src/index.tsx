@@ -26,6 +26,7 @@ if (liff.isInClient()) {
     // withLoginOnExternalBrowser: true
   })
   .then(() => {
+    alert('liff is init');
     liff
       .getProfile()
       .then((result) => {
